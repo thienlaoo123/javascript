@@ -1,85 +1,22 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Тесты для lab2.js</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mocha/mocha.css">
+    <title>Сумма чисел</title>
+    <script src="lab2.js"></script>
 </head>
 <body>
-  <h1>Mocha + Chai: Тесты для <code>pow</code> и <code>sumTo</code></h1>
-  <div id="mocha"></div>
+    <h1>Сумма чисел от 1 до n</h1>
+    <p>Введите число n:</p>
+    <input type="number" id="number" placeholder="Число n">
+    <button onclick="calculateSum()">Вычислить сумму</button>
+    <p id="result"></p>
 
-  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
-  <script>mocha.setup('bdd');</script>
-
-  <!-- Подключаем тестируемый файл -->
-  <script src="lab2.js"></script>
-
-  <script>
-    const assert = chai.assert;
-
-    describe('pow(x, n)', function() {
-      it('pow(2, 2) → 4', function() {
-        assert.strictEqual(pow(2, 2), 4);
-      });
-
-      it('pow(2, 0) → 1', function() {
-        assert.strictEqual(pow(2, 0), 1);
-      });
-
-      it('pow(2, -2) → 0.25', function() {
-        assert.strictEqual(pow(2, -2), 0.25);
-      });
-
-      it('pow(5, 1) → 5', function() {
-        assert.strictEqual(pow(5, 1), 5);
-      });
-
-      it('pow(0, 5) → 0', function() {
-        assert.strictEqual(pow(0, 5), 0);
-      });
-
-      it('pow with non-integer n throws TypeError', function() {
-        assert.throws(() => pow(2, 1.5), TypeError);
-      });
-
-      it('pow with wrong types throws TypeError', function() {
-        assert.throws(() => pow('2', 3), TypeError);
-        assert.throws(() => pow(2, '3'), TypeError);
-      });
-    });
-
-    describe('sumTo(n)', function() {
-      it('sumTo(1) → 1', function() {
-        assert.strictEqual(sumTo(1), 1);
-      });
-
-      it('sumTo(5) → 15', function() {
-        assert.strictEqual(sumTo(5), 15);
-      });
-
-      it('sumTo(100) → 5050', function() {
-        assert.strictEqual(sumTo(100), 5050);
-      });
-
-      it('sumTo with zero or negative n throws TypeError', function() {
-        assert.throws(() => sumTo(0), TypeError);
-        assert.throws(() => sumTo(-5), TypeError);
-      });
-
-      it('sumTo with non-integer n throws TypeError', function() {
-        assert.throws(() => sumTo(3.14), TypeError);
-      });
-
-      it('sumTo with wrong type throws TypeError', function() {
-        assert.throws(() => sumTo('10'), TypeError);
-      });
-    });
-
-    // Запуск тестов
-    mocha.run();
-  </script>
+    <script>
+        function calculateSum() {
+            const n = parseInt(document.getElementById('number').value);
+            const result = sumTo(n);
+            document.getElementById('result').textContent = `Сумма чисел от 1 до ${n} = ${result}`;
+        }
+    </script>
 </body>
 </html>
